@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.cse535.group2.semesterproject">
+
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.SEND_SMS" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+    <application
+        android:name=".SemesterProject"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".activity.SettingsActivity" />
+        <activity android:name=".activity.VocabularyActivity" />
+        <activity
+            android:name=".assistant.AddPeopleActivity"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".assistant.SampleEmergencyActivity"
+            android:label="Emergency Contact"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".assistant.EnrollPersonActivity"
+            android:parentActivityName=".assistant.AddPeopleActivity" />
+
+        <service
+            android:name=".service.SpeakerService"
+            android:enabled="true"
+            android:exported="true" />
+
+        <activity android:name=".assistant.SpeechRecognizerActivity"></activity>
+    </application>
+
+</manifest>

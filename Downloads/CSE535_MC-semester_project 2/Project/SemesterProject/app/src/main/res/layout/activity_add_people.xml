@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_add_people"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="edu.cse535.grp2.assistant.AddPeopleActivity"
+    android:orientation="vertical">
+    <!--<com.gelitenight.waveview.library.WaveView-->
+        <!--android:id="@+id/wave_view"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent" />-->
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Add Person"
+        android:id="@+id/btn_add"/>
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/lst_people"></ListView>
+
+</LinearLayout>
