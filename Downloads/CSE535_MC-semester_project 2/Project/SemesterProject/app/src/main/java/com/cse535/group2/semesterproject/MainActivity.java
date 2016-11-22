@@ -26,7 +26,9 @@ import com.cse535.group2.semesterproject.activity.VocabularyActivity;
 import com.cse535.group2.semesterproject.controller.UserLocation;
 import com.cse535.group2.semesterproject.data.DatabaseUtility;
 import com.cse535.group2.semesterproject.data.VocabTopicDataSource;
+import com.cse535.group2.semesterproject.data.VocabularyDataSource;
 import com.cse535.group2.semesterproject.model.VocabTopic;
+import com.cse535.group2.semesterproject.model.Vocabulary;
 import com.cse535.group2.semesterproject.predictions.PredictionsUtility;
 import com.cse535.group2.semesterproject.service.SpeakerService;
 
@@ -214,9 +216,27 @@ public class MainActivity extends AppCompatActivity {
         switch(requestCode){
             case 100: {
                 if(resultCode ==RESULT_OK && i!= null) {
-                    ArrayList<String> results = i.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
-                    Toast.makeText(MainActivity.this, results.toString(), Toast.LENGTH_SHORT).show();
 
+                    VocabularyDataSource vocabularyDataSource = new VocabularyDataSource(MainActivity.this);
+                    List<Vocabulary> allVocab = vocabularyDataSource.getAllResults();
+
+                    ArrayList<String> results = i.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
+                    boolean found = false;
+                    for(String x: results){
+                        if(!found) {
+                            //if any of the words that are spoken are in the vocab already,
+                            //make the first letter capital
+                            x = x.substring(0, 1).toUpperCase() + x.substring(1);
+                            for (Vocabulary word : allVocab) {
+                                if (word.getVocabularyName().equals(x)) {
+                                    Toast.makeText(MainActivity.this, x + " was found in the vocab", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(MainActivity.this, "Changing to " + word.getVocabularyTopicId(), Toast.LENGTH_SHORT).show();
+                                    navigateToVocabulayPage(word.getVocabularyTopicId());
+                                    found = true;
+                                }
+                            }
+                        }
+                    }
                 }
                 break;
             }
